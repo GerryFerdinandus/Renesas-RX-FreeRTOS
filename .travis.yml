@@ -1,0 +1,26 @@
+
+language: c
+
+#ubuntu 14.04
+dist: trusty
+sudo: false
+
+os:
+  - linux
+
+env:
+  global:
+  # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+  #   via the "travis encrypt" command using the project repo's public key
+  - secure: "Dn99xYBBfGpZa4wj1TV/BVS/7fW3RsuohW/XGcIf0c/ztNpdZQJyeezbOmfYXRkx6s5AWRhPIcnh052p7irSpZsA9FQpc7mNw2B6Jw6IHBK6cKuidZIgDkjxgNZwS07K6RF9Ow3TIY69Cv+0jebEx6jp/LnfMq8yV86BHGSeexI1HotR2UFRTUPL+wz4QWp7CCIKlOdHMN9Bg0Jgoe63L5CyuuUn0I4RJYpdX6VH78TYw5BymuA8a5BbFNcj/XCsc0sDg1y69ScLd6zpfRRZaDlApViAOBG7Dsk+t/lczn7Q1e/RTF0IMvNflcI0KGKTPOO+5NwXZSCdCiKVWvv3FyWdmbFSDpvgRQn9hc2t7EspjPF6x62pSyiT5BNUyxV3ublAFpXXCaeZ3raoch5CTHlPB7yR58U0HmzMJm/P217kzxLeyKG2TdsuMvY0wF8qJ7urePUAMYGvroms7ZqrRwot+iLFd2ywUh4nSr2Q9/haGcVD+/Yar6UgLGgOtPSWhXkv0ASnnx4M8+MTcis0TUsBbnbElCqxsJBdTmq7xvi0Hbbvbq+9uUBew0JMI8l1oU69COH/TPYbDEGC98MfM1njUOuARVM4jx5LWc//Pm5tMCtUrfs04NHQGX4xwXUi3IfHrw8LJsxuBvn3Hk6RRnNJmu9fFDGEW/ZLH3rosFM="
+  - COVERITY_SCAN_BRANCH_PATTERN="coverity_scan"
+  - COVERITY_SCAN_NOTIFICATION_EMAIL="$EMAIL_PRIVATE"
+  - COVERITY_SCAN_BUILD_COMMAND="make"
+  - COVERITY_SCAN_PROJECT_NAME="$TRAVIS_REPO_SLUG"
+
+script:
+  - source ./scripts/travisci_script.sh
+
+# No need to get all the GIT history
+git:
+  depth: 1
