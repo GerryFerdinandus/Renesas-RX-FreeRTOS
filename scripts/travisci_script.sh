@@ -19,5 +19,8 @@ make || exit 1
 
 # Start coverity scan
 make clean
-source ./scripts/travisci_build_coverity_scan.sh
+./scripts/travisci_build_coverity_scan.sh
+
+# Start SonarQube Analysis
+./scripts/runSonarQubeAnalysis.sh
 

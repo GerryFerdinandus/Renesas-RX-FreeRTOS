@@ -1,1 +1,13 @@
-# Nothing to ignore at this moment
+#ignore backup file
+*.bak
+
+#ignore compiler generated files
+*.o
+*.elf
+*.hex
+*.map
+*.lst
+
+#ignore sonar generated files
+.sonar/
+bw-outputs/
