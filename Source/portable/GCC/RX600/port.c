@@ -384,7 +384,7 @@ uint32_t ulPortGetIPL( void )
 }
 /*-----------------------------------------------------------*/
 
-void vPortSetIPL( uint32_t ulNewIPL )
+void vPortSetIPL(__attribute__ ((unused)) uint32_t ulNewIPL )
 {
 	__asm volatile
 	(
