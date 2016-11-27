@@ -4,6 +4,7 @@ PROJECT_MAP=$(PROJECT_NAME).map
 PROJECT_LST=$(PROJECT_NAME).lst
 PROJECT_HEX=$(PROJECT_NAME).hex
 
+
 # Define all the GNU Renesas RX programs being used
 CC=rx-elf-gcc
 AS=rx-elf-gcc
@@ -21,34 +22,34 @@ DEP=$(OBJ:.o=.d)
 all: $(PROJECT_ELF) $(PROJECT_HEX) $(PROJECT_LST)
 
 $(PROJECT_ELF): $(OBJ)
-	@echo "LD\t"$@
 	@$(LD) $(LDFLAGS) -o $@ $^
 	@echo "SIZE\t"$@
 	@$(SIZE) $@
+	@echo "LD\t"$$(sha1sum $@)
 
 %.o: %.c
-	@echo "CC\t"$@ $^
 	@$(CC) $(INCLUDE) $(CFLAGS) -c -o $@ $<
+	@echo "CC\t"$$(sha1sum $@)
 
 %.o: %.S
-	@echo "AS\t"$@ $^
 	@$(AS) $(ASFLAGS) -c -o $@ $<
+	@echo "AS\t"$$(sha1sum $@)
 
 %.o: %.asm
-	@echo "AS\t"$@ $^
 	@$(AS) $(ASFLAGS) -c -o $@ $<
+	@echo "AS\t"$$(sha1sum $@)
 
 %.lst: %.elf
-	@echo "OBJDUMP\t"$@
 	@$(OBJDUMP) -DS $^ > $@
+	@echo "OBJDUMP\t"$$(sha1sum $@)
 
 %.lst: %.o
-	@echo "OBJDUMP\t"$@
 	@$(OBJDUMP) -DS $^ > $@
+	@echo "OBJDUMP\t"$$(sha1sum $@)
 
 %.hex: %.elf
-	@echo "OBJCOPY\t"$@
 	@$(OBJCOPY) -Oihex $^ $@
+	@echo "OBJCOPY\t"$$(sha1sum $@)
 
 .PHONY: clean show_flags show_source show_all
 
