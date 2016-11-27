@@ -1,9 +1,9 @@
 
 language: c
 
-# Ubuntu 12.04 NON container-based infrastructure
-#dist: trusty
-dist: precise
+# Ubuntu 14.04 NON container-based infrastructure
+dist: trusty
+#dist: precise
 sudo: true
 
 # Only use Linux OS build server
