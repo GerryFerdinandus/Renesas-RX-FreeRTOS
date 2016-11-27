@@ -17,6 +17,10 @@ rx-elf-gcc --version
 make clean
 make || exit 1
 
+# Show output file SHA-1 hash
+sha1sum *.elf
+sha1sum *.hex
+
 # Start coverity scan
 make clean
 ./scripts/travisci_build_coverity_scan.sh
