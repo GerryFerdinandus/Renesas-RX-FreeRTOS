@@ -14,12 +14,9 @@ export PATH="$PWD/prefix/bin:$PATH"
 rx-elf-gcc --version
 
 # Start building the program. Stop when error in 'make' is detected.
+make show_flags
 make clean
 make || exit 1
-
-# Show output file SHA-1 hash
-sha1sum *.elf
-sha1sum *.hex
 
 # Start coverity scan
 make clean
