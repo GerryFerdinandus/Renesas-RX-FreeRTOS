@@ -1,10 +1,10 @@
 
 language: c
 
-# Ubuntu 14.04 NON container-based infrastructure
+# Ubuntu 14.04 container-based infrastructure
 dist: trusty
 #dist: precise
-sudo: true
+sudo: false
 
 # Only use Linux OS build server
 os:
