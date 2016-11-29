@@ -19,7 +19,10 @@ OBJ=$(SOURCE_C:.c=.o) $(SOURCE_ASM:.asm=.o) $(SOURCE_S:.S=.o)
 # create dependency list from objects
 DEP=$(OBJ:.o=.d)
 
-all: $(PROJECT_ELF) $(PROJECT_HEX) $(PROJECT_LST)
+# create lst list from objects
+SOURCES_LST=$(OBJ:.o=.lst)
+
+all: $(PROJECT_ELF) $(PROJECT_HEX) $(PROJECT_LST) $(SOURCES_LST)
 
 $(PROJECT_ELF): $(OBJ)
 	@$(LD) $(LDFLAGS) -o $@ $^
@@ -55,7 +58,7 @@ $(PROJECT_ELF): $(OBJ)
 
 # remove all the files created
 clean:
-	@rm -f $(OBJ) $(DEP) $(PROJECT_ELF) $(PROJECT_MAP) $(PROJECT_LST) $(PROJECT_HEX)
+	@rm -f $(OBJ) $(DEP) $(PROJECT_ELF) $(PROJECT_MAP) $(PROJECT_LST) $(PROJECT_HEX) $(SOURCES_LST)
 
 show_flags:
 	@echo "=================" $@ "================="
