@@ -43,8 +43,16 @@ CFLAGS=\
 	-mlittle-endian-data \
 	-mcpu=rx600 \
 	-Wall \
+	-Wextra \
 	-Werror \
 	-std=c99 \
+	-g \
+	-Wconversion \
+	-Wmissing-prototypes \
+	-Wstrict-prototypes \
+	-Wcast-qual \
+	-Wswitch-default \
+	-pedantic \
 	$(END)
 
 # assembler flags with gcc
