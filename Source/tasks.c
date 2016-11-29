@@ -67,6 +67,12 @@
     1 tab == 4 spaces!
 */
 
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wswitch-default"
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+
 /* Standard includes. */
 #include <stdlib.h>
 #include <string.h>
@@ -4804,4 +4810,9 @@ const TickType_t xConstTickCount = xTickCount;
 #ifdef FREERTOS_MODULE_TEST
 	#include "tasks_test_access_functions.h"
 #endif
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
+
 

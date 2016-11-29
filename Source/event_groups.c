@@ -67,6 +67,11 @@
     1 tab == 4 spaces!
 */
 
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wcast-qual"
+#endif
+
 /* Standard includes. */
 #include <stdlib.h>
 
@@ -750,3 +755,6 @@ BaseType_t xWaitConditionMet = pdFALSE;
 
 #endif
 
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
