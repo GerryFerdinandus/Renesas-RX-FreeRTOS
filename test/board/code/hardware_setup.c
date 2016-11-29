@@ -177,6 +177,7 @@ static void operating_frequency_set(void)
 {
     /* Used for constructing value to write to SCKCR register. */
     uint32_t temp_clock = 0;
+    uint32_t temp;
 
     /*
     Clock Description              Frequency
@@ -188,13 +189,12 @@ static void operating_frequency_set(void)
     USB Clock Frequency..............  48 MHz
     External Bus Clock Frequency.....  24 MHz */
 
-	volatile unsigned int i;
 
     /* Protect off. */
     SYSTEM.PRCR.WORD = 0xA50B;
 
     /* Uncomment if not using sub-clock */
-	//SYSTEM.SOSCCR.BYTE = 0x01;          /* stop sub-clock */
+	//SYSTEM.SOSCCR.BYTE = 0x01;          // stop sub-clock
     SYSTEM.SOSCCR.BYTE = 0x00;			/* Enable sub-clock for RTC */
 
     /* Wait 131,072 cycles * 12 MHz = 10.9 ms */
@@ -204,7 +204,7 @@ static void operating_frequency_set(void)
     SYSTEM.PLLWTCR.BYTE = 0x0F;
 
     /* Set PLL Input Divisor. */
-    SYSTEM.PLLCR.BIT.PLIDIV = PLL_DIV >> 1;
+    SYSTEM.PLLCR.BIT.PLIDIV = PLL_DIV >> 1U;
 
     /* Set PLL Multiplier. */
     SYSTEM.PLLCR.BIT.STC = PLL_MUL - 1;
@@ -215,114 +215,112 @@ static void operating_frequency_set(void)
     /* PLL ON */
     SYSTEM.PLLCR2.BYTE = 0x00;
 
-	for(i = 0;i< 0x168;i++)
+	for(uint16_t i = 0;i< 0x168;i++)
     {
         /* Wait over 12ms */
-     //   nop() ;
-		__asm volatile( "nop");
-		//todo:nop
+		*(volatile uint32_t *)(&temp) = 0;
 	}
 
     /* Figure out setting for FCK bits. */
 #if   FCK_DIV == 1
     /* Do nothing since FCK bits should be 0. */
 #elif FCK_DIV == 2
-    temp_clock |= 0x10000000;
+    temp_clock |= 0x10000000U;
 #elif FCK_DIV == 4
-    temp_clock |= 0x20000000;
+    temp_clock |= 0x20000000U;
 #elif FCK_DIV == 8
-    temp_clock |= 0x30000000;
+    temp_clock |= 0x30000000U;
 #elif FCK_DIV == 16
-    temp_clock |= 0x40000000;
+    temp_clock |= 0x40000000U;
 #elif FCK_DIV == 32
-    temp_clock |= 0x50000000;
+    temp_clock |= 0x50000000U;
 #elif FCK_DIV == 64
-    temp_clock |= 0x60000000;
+    temp_clock |= 0x60000000U;
 #else
-    #error "Error! Invalid setting for FCK_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for FCK_DIV in r_bsp_config.h"
 #endif
 
     /* Figure out setting for ICK bits. */
 #if   ICK_DIV == 1
     /* Do nothing since ICK bits should be 0. */
 #elif ICK_DIV == 2
-    temp_clock |= 0x01000000;
+    temp_clock |= 0x01000000U;
 #elif ICK_DIV == 4
-    temp_clock |= 0x02000000;
+    temp_clock |= 0x02000000U;
 #elif ICK_DIV == 8
-    temp_clock |= 0x03000000;
+    temp_clock |= 0x03000000U;
 #elif ICK_DIV == 16
-    temp_clock |= 0x04000000;
+    temp_clock |= 0x04000000U;
 #elif ICK_DIV == 32
-    temp_clock |= 0x05000000;
+    temp_clock |= 0x05000000U;
 #elif ICK_DIV == 64
-    temp_clock |= 0x06000000;
+    temp_clock |= 0x06000000U;
 #else
-    #error "Error! Invalid setting for ICK_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for ICK_DIV in r_bsp_config.h"
 #endif
 
     /* SDCLK Pin Output and BCLK Pin Output are disabled by default. */
-    temp_clock |= 0x00C00000;
+    temp_clock |= 0x00C00000U;
 
     /* Figure out setting for BCK bits. */
 #if   BCK_DIV == 1
     /* Do nothing since BCK bits should be 0. */
 #elif BCK_DIV == 2
-    temp_clock |= 0x00010000;
+    temp_clock |= 0x00010000U;
 #elif BCK_DIV == 4
-    temp_clock |= 0x00020000;
+    temp_clock |= 0x00020000U;
 #elif BCK_DIV == 8
-    temp_clock |= 0x00030000;
+    temp_clock |= 0x00030000U;
 #elif BCK_DIV == 16
-    temp_clock |= 0x00040000;
+    temp_clock |= 0x00040000U;
 #elif BCK_DIV == 32
-    temp_clock |= 0x00050000;
+    temp_clock |= 0x00050000U;
 #elif BCK_DIV == 64
-    temp_clock |= 0x00060000;
+    temp_clock |= 0x00060000U;
 #else
-    #error "Error! Invalid setting for BCK_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for BCK_DIV in r_bsp_config.h"
 #endif
 
     /* Figure out setting for PCKA bits. */
 #if   PCKA_DIV == 1
     /* Do nothing since PCKA bits should be 0. */
 #elif PCKA_DIV == 2
-    temp_clock |= 0x00001000;
+    temp_clock |= 0x00001000U;
 #elif PCKA_DIV == 4
-    temp_clock |= 0x00002000;
+    temp_clock |= 0x00002000U;
 #elif PCKA_DIV == 8
-    temp_clock |= 0x00003000;
+    temp_clock |= 0x00003000U;
 #elif PCKA_DIV == 16
-    temp_clock |= 0x00004000;
+    temp_clock |= 0x00004000U;
 #elif PCKA_DIV == 32
-    temp_clock |= 0x00005000;
+    temp_clock |= 0x00005000U;
 #elif PCKA_DIV == 64
-    temp_clock |= 0x00006000;
+    temp_clock |= 0x00006000U;
 #else
-    #error "Error! Invalid setting for PCKA_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for PCKA_DIV in r_bsp_config.h"
 #endif
 
     /* Figure out setting for PCKB bits. */
 #if   PCKB_DIV == 1
     /* Do nothing since PCKB bits should be 0. */
 #elif PCKB_DIV == 2
-    temp_clock |= 0x00000100;
+    temp_clock |= 0x00000100U;
 #elif PCKB_DIV == 4
-    temp_clock |= 0x00000200;
+    temp_clock |= 0x00000200U;
 #elif PCKB_DIV == 8
-    temp_clock |= 0x00000300;
+    temp_clock |= 0x00000300U;
 #elif PCKB_DIV == 16
-    temp_clock |= 0x00000400;
+    temp_clock |= 0x00000400U;
 #elif PCKB_DIV == 32
-    temp_clock |= 0x00000500;
+    temp_clock |= 0x00000500U;
 #elif PCKB_DIV == 64
-    temp_clock |= 0x00000600;
+    temp_clock |= 0x00000600U;
 #else
-    #error "Error! Invalid setting for PCKB_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for PCKB_DIV in r_bsp_config.h"
 #endif
 
     /* Bottom byte of SCKCR register must be set to 0x11 */
-    temp_clock |= 0x00000011;
+    temp_clock |= 0x00000011U;
 
     /* Set SCKCR register. */
     SYSTEM.SCKCR.LONG = temp_clock;
@@ -332,30 +330,30 @@ static void operating_frequency_set(void)
 
     /* Figure out setting for IEBCK bits. */
 #if   IEBCK_DIV == 2
-    temp_clock |= 0x00000001;
+    temp_clock |= 0x00000001U;
 #elif IEBCK_DIV == 4
-    temp_clock |= 0x00000002;
+    temp_clock |= 0x00000002U;
 #elif IEBCK_DIV == 6
-    temp_clock |= 0x0000000C;
+    temp_clock |= 0x0000000CU;
 #elif IEBCK_DIV == 8
-    temp_clock |= 0x00000003;
+    temp_clock |= 0x00000003U;
 #elif IEBCK_DIV == 16
-    temp_clock |= 0x00000004;
+    temp_clock |= 0x00000004U;
 #elif IEBCK_DIV == 32
-    temp_clock |= 0x00000005;
+    temp_clock |= 0x00000005U;
 #elif IEBCK_DIV == 64
-    temp_clock |= 0x00000006;
+    temp_clock |= 0x00000006U;
 #else
-    #error "Error! Invalid setting for IEBCK_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for IEBCK_DIV in r_bsp_config.h"
 #endif
 
     /* Figure out setting for UCK bits. */
 #if   UCK_DIV == 3
-    temp_clock |= 0x00000020;
+    temp_clock |= 0x00000020U;
 #elif UCK_DIV == 4
-    temp_clock |= 0x00000030;
+    temp_clock |= 0x00000030U;
 #else
-    #error "Error! Invalid setting for UCK_DIV in r_bsp_config.h"
+#error "Error! Invalid setting for UCK_DIV in r_bsp_config.h"
 #endif
 
     /* Set SCKCR2 register. */

@@ -1,3 +1,6 @@
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-pedantic"
+
 /***************************************************************/
 /*                                                             */
 /*      PROJECT NAME :  test1                                  */
@@ -21038,3 +21041,4 @@ GCR_TPU8_TCI8V=6,GCR_TPU8_TCI8U=6,GCR_TPU9_TCI9V=6,GCR_TPU10_TCI10V=6,GCR_TPU10_
 #pragma pack()
 #endif
 
+#pragma GCC diagnostic pop

@@ -36,20 +36,20 @@ Configuration Options
    '#pragma stacksize' is encountered, the stack size is increased. This prevents multiplication of stack size. */
 #if defined(BSP_DECLARE_STACK)
 /* User Stack size in bytes. The Renesas RX toolchain sets the stack size using the #pragma stacksize directive. */
-#pragma stacksize su=0x1000
+#pragma stacksize su=0x1000U
 /* Interrupt Stack size in bytes. The Renesas RX toolchain sets the stack size using the #pragma stacksize directive. */
-#pragma stacksize si=0x400
+#pragma stacksize si=0x400U
 #endif
 
 /* Heap size in bytes. */
-#define HEAP_BYTES              (0x4)
+#define HEAP_BYTES              (0x4U)
 
 /* After reset MCU will operate in Supervisor mode. To switch to User mode, set this macro to '1'. For more information
    on the differences between these 2 modes see the CPU >> Processor Mode section of your MCU's hardware manual.
    0 = Stay in Supervisor mode.
    1 = Switch to User mode.
 */
-#define RUN_IN_USER_MODE        (0)
+#define RUN_IN_USER_MODE        (0U)
 
 /* To get into User Boot Mode the user must control some pins on the MCU and also set some values in ROM. These values
    in ROM are described in the Option-Setting Memory section of the hardware manual. This macro sets these values so 
@@ -57,7 +57,7 @@ Configuration Options
    0 = Single-Chip or USB Boot Mode
    1 = User Boot Mode
 */
-#define USER_BOOT_ENABLE        (0)
+#define USER_BOOT_ENABLE        (0U)
 
 /* Set your desired ID code. NOTE, leave at the default (all 0xFF's) if you do not wish to use an ID code. If you set 
    this value and program it into the MCU then you will need to remember the ID code because the debugger will ask for 
@@ -65,19 +65,19 @@ Configuration Options
    If you set this value and then forget it then you can clear the ID code by connecting up in serial boot mode using 
    FDT. The ID Code is 16 bytes long. The macro below define the ID Code in 4-byte sections. */
 /* Lowest 4-byte section, address 0xFFFFFFA0. From MSB to LSB: Control Code, ID code 1, ID code 2, ID code 3. */
-#define ID_CODE_LONG_1          (0xFFFFFFFF)
+#define ID_CODE_LONG_1          (0xFFFFFFFFU)
 /* 2nd ID Code section, address 0xFFFFFFA4. From MSB to LSB: ID code 4, ID code 5, ID code 6, ID code 7. */
-#define ID_CODE_LONG_2          (0xFFFFFFFF)
+#define ID_CODE_LONG_2          (0xFFFFFFFFU)
 /* 3rd ID Code section, address 0xFFFFFFA8. From MSB to LSB: ID code 8, ID code 9, ID code 10, ID code 11. */
-#define ID_CODE_LONG_3          (0xFFFFFFFF)
+#define ID_CODE_LONG_3          (0xFFFFFFFFU)
 /* 4th ID Code section, address 0xFFFFFFAC. From MSB to LSB: ID code 12, ID code 13, ID code 14, ID code 15. */
-#define ID_CODE_LONG_4          (0xFFFFFFFF)
+#define ID_CODE_LONG_4          (0xFFFFFFFFU)
 
 /* This macro lets other modules no if a RTOS is being used.
    0 = RTOS is not used. 
    1 = RTOS is used.
 */
-#define RTOS_USED               (0)
+#define RTOS_USED               (0U)
 
 /* Clock source select (CKSEL).
    0 = Low Speed On-Chip Oscillator  (LOCO)
@@ -86,7 +86,7 @@ Configuration Options
    3 = Sub-Clock Oscillator
    4 = PLL Circuit
 */ 
-#define CLOCK_SOURCE            (4)
+#define CLOCK_SOURCE            (4U)
 
 /* Clock configuration options.
    The input clock frequency is specified and then the system clocks are set by specifying the multipliers used. The
@@ -105,43 +105,43 @@ Configuration Options
    UCK_DIV =  4      : USB Clock (UCLK)           = (((XTAL_HZ/PLL_DIV) * PLL_MUL) / UCK_DIV)  = 48MHz
 */
 /* XTAL - Input clock frequency in Hz */
-#define XTAL_HZ                 (12000000)
+#define XTAL_HZ                 (12000000U)
 /* PLL Input Frequency Divider Select (PLIDIV). 
    Available divisors = /1 (no division), /2, /4
 */
-#define PLL_DIV                 (1)
+#define PLL_DIV                 (1U)
 /* PLL Frequency Multiplication Factor Select (STC). 
    Available multipliers = x8, x10, x12, x16, x20, x24, x25, x50
 */
-#define PLL_MUL                 (16)
+#define PLL_MUL                 (16U)
 /* System Clock Divider (ICK).
    Available divisors = /1 (no division), /2, /4, /8, /16, /32, /64
 */
-#define ICK_DIV                 (2)
+#define ICK_DIV                 (2U)
 /* Peripheral Module Clock A Divider (PCKA). 
    Available divisors = /1 (no division), /2, /4, /8, /16, /32, /64
 */
-#define PCKA_DIV                (2) /* WAS 4 for 48MHz, attempting to make it equal ICLK by setting it to 2. */
+#define PCKA_DIV                (2U) /* WAS 4 for 48MHz, attempting to make it equal ICLK by setting it to 2. */
 /* Peripheral Module Clock B Divider (PCKB). 
    Available divisors = /1 (no division), /2, /4, /8, /16, /32, /64
 */
-#define PCKB_DIV                (4)
+#define PCKB_DIV                (4U)
 /* External Bus Clock Divider (BCK). 
    Available divisors = /1 (no division), /2, /4, /8, /16, /32, /64
 */
-#define BCK_DIV                 (8)
+#define BCK_DIV                 (8U)
 /* Flash IF Clock Divider (FCK). 
    Available divisors = /1 (no division), /2, /4, /8, /16, /32, /64
 */
-#define FCK_DIV                 (4)
+#define FCK_DIV                 (4U)
 /* IEBUS Clock Divider Select. 
    Available divisors = /1 (no division), /2, /4, /6, /8, /16, /32, /64
 */
-#define IEBCK_DIV               (8)
+#define IEBCK_DIV               (8U)
 /* USB Clock Divider Select. 
    Available divisors = /3, /4
 */
-#define UCK_DIV                 (4)
+#define UCK_DIV                 (4U)
 
 #endif /* R_BSP_CONFIG_REF_HEADER_FILE */
 

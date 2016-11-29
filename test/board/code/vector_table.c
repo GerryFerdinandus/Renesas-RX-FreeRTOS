@@ -19,6 +19,9 @@
 
 #include "interrupt_handlers.h"
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-pedantic"
+
 typedef void (*fp) (void);
 extern void PowerON_Reset (void);
 extern void stack (void);
@@ -651,3 +654,5 @@ const fp RelocatableVectors[] RVECT_SECT  = {
 //;0x03FC  Reserved
     (fp)0,
 };
+
+#pragma GCC diagnostic pop

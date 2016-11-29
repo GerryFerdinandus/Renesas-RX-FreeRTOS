@@ -86,8 +86,8 @@
 #define ETH_CRS             PORTB.PODR.BIT.B7
 
 /* I/O port C:  RSPI and peripheral I/O pins definitions */
-#define RSPI_CHANNEL_0      0
-#define RSPI_CHANNEL_1      1
+#define RSPI_CHANNEL_0      (0)
+#define RSPI_CHANNEL_1      (1)
 #define FLASH_CS            PORTC.PODR.BIT.B0        /* SSL 1 */
 #define AUDIO_OUT_L         PORTC.PODR.BIT.B1
 #define LCD_CS              PORTC.PODR.BIT.B2        /* SSL 3 */
