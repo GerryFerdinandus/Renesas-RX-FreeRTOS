@@ -41,10 +41,6 @@ before_script:
 script:
   - source ./scripts/travisci_script.sh
 
-# No need to get all the GIT history
-git:
-  depth: 1
-
 # Need to install Java for SonarQube
 addons:
   apt:
