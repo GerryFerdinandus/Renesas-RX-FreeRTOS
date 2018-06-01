@@ -7,4 +7,4 @@ This repository is used as a git submodule for a RX63N project.
 ## Code Status: ##
 |Linux Build Status|Coverity Scan Status|SonarQube Status|
 |:--:|:--:|:--:|
-|[![Build Status](https://travis-ci.org/GerryFerdinandus/Renesas-RX-FreeRTOS.svg?branch=master)](https://travis-ci.org/GerryFerdinandus/Renesas-RX-FreeRTOS)|[![Coverity Scan Status](https://scan.coverity.com/projects/10863/badge.svg)](https://scan.coverity.com/projects/gerryferdinandus-renesas-rx-freertos)|[![Quality Gate](https://sonarqube.com/api/badges/gate?key=GerryFerdinandus%3ARenesas-RX-FreeRTOS)](https://sonarqube.com/dashboard/index/GerryFerdinandus%3ARenesas-RX-FreeRTOS)|
+|[![Build Status](https://travis-ci.org/GerryFerdinandus/Renesas-RX-FreeRTOS.svg?branch=master)](https://travis-ci.org/GerryFerdinandus/Renesas-RX-FreeRTOS)|[![Coverity Scan Status](https://scan.coverity.com/projects/10863/badge.svg)](https://scan.coverity.com/projects/gerryferdinandus-renesas-rx-freertos)|[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=GerryFerdinandus%3ARenesas-RX-FreeRTOS&metric=alert_status)](https://sonarqube.com/dashboard/index/GerryFerdinandus%3ARenesas-RX-FreeRTOS)|
